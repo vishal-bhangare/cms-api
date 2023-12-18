@@ -18,10 +18,15 @@ export class UsersService {
     private jwtService: JwtService,
   ) {}
 
+  // fetching all users (only for testing api)
+  // @return array of users
   getAllUsers() {
     return this.usersRepo.find({ relations: ['contacts'] });
   }
 
+  // create new user
+  // @param object type of UserData
+  // @return jwt access token
   async createUser(userData: UserData) {
     const user = await this.usersRepo.findOneBy({ email: userData.email });
     if (user)
@@ -38,6 +43,9 @@ export class UsersService {
     };
   }
 
+  // to login into the user account
+  // @param takes object type of loginData
+  // @return jwt access token
   async login(loginData: loginData) {
     const user = await this.usersRepo.findOneBy({ email: loginData.email });
     if (!verifyHash(loginData.password, user.password))
@@ -50,6 +58,9 @@ export class UsersService {
     };
   }
 
+  // to delete user
+  // @param email of user
+  // @return object consist of msg and status
   async deleteUser(email: string) {
     const res = await this.usersRepo.delete({ email: email });
     if (res.affected)
