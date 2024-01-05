@@ -9,8 +9,15 @@
 *   **Description**: Creates a new user.
 *   **Authentication**: None
 *   **Request Body**:
-    *   `newUserDto` (Type: `NewUserDto`): User data for signup, including confirmation of the password.
-
+    *   ```
+        {
+           "name":string,
+           "email":string,
+           "password":string,
+           "confirmPassword":string
+        }
+        ```
+   
 ### User Login
 
 *   **URL**: `/users/login`
@@ -18,7 +25,12 @@
 *   **Description**: Authenticates a user and returns a JWT token.
 *   **Authentication**: None
 *   **Request Body**:
-    *   `loginData` (Type: `UserLoginDto`): User login credentials
+    *    ```
+         {
+           "email":string,
+           "password":string
+         }
+         ```
 
 ### Delete User
 
@@ -27,7 +39,11 @@
 *   **Description**: Deletes a user.
 *   **Authentication**: Requires authentication using the `AuthGuard`.
 *   **Request Body**:
-    *   `deleteUserDto` (Type: `deleteUserDto`): User data for deletion, including the user's email.
+    *    ```
+         {
+           "email":string
+         }
+         ```
 
 ## Contact Endpoints
 
@@ -47,8 +63,14 @@
 *   **Description**: Creates a new contact.
 *   **Authentication**: Requires authentication using the `AuthGuard`.
 *   **Request Body**:
-    *   `contactData` (Type: `NewContactDto`): Data for creating a new contact.
-
+    *    ```
+         {
+           "userId":number,
+           "name":string,
+           "email":string,
+           "phone":string
+         }
+         ```
 ### Update Contact
 
 *   **URL**: `/contacts/:id`
@@ -58,8 +80,13 @@
 *   **Request Parameters**:
     *   `id` (Type: `number`, Location: URL): ID of the contact to be updated.
 *   **Request Body**:
-    *   `contactData` (Type: `UpdateContactDto`): Data for updating an existing contact.
-
+    *   ```
+        {
+           "name":string,
+           "email":string,
+           "phone":string,
+        }
+        ```
 ### Delete Contact
 
 *   **URL**: `/contacts/:id`
