@@ -20,7 +20,7 @@ export class HealthController {
   @HealthCheck()
   check() {
     return this.health.check([
-      () => this.http.pingCheck('cms-api', 'http://localhost:3000/'),
+      () => this.http.pingCheck('cms-api', 'https://cms-api-95vd.onrender.com/'),
       () => this.db.pingCheck('database', { timeout: 2000 }),
     ]);
   }
