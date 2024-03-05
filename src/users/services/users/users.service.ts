@@ -35,12 +35,8 @@ export class UsersService {
         HttpStatus.BAD_REQUEST,
       );
     const res = await this.usersRepo.save(userData);
-    const payload = {
-      user: { id: res.id, name: res.name, email: res.email },
-    };
-    return {
-      access_token: await this.jwtService.signAsync(payload),
-    };
+
+    return res;
   }
 
   // to login into the user account

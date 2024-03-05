@@ -7,24 +7,26 @@ import { UsersModule } from './users/users.module';
 import { User } from './typeorm/entities/User';
 import { ContactsModule } from './contacts/contacts.module';
 import { Contact } from './typeorm/entities/Contact';
+import { HealthModule } from './health/health.module';
 
-console.log(process.env.DB)
 @Module({
-  imports: [ ConfigModule.forRoot(),
+  imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.PGHOST,
       port: 5432,
       password: process.env.PGPASSWORD,
       username: process.env.PGUSER,
-      entities: [User,Contact],
+      entities: [User, Contact],
       database: process.env.PGDATABASE,
       synchronize: true,
       logging: true,
-      ssl:true
+      ssl: true,
     }),
     UsersModule,
     ContactsModule,
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
